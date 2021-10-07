@@ -17,10 +17,17 @@ use Illuminate\Support\Facades\Route;
 Route::resource('/posts', PostControllser::class)
 ->middleware(['auth']);
 
+Route::delete('/posts/images/{id}', [PostControllser::class, 'deleteImage'])->middleware(['auth']);
+
 
 Route::get('/', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
+Route::post('/like/{post}',\App\Http\Controllers\LikeController::class, "store")->middleware('auth')->name('like.store');
 
 require __DIR__.'/auth.php';
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

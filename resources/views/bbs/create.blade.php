@@ -19,7 +19,7 @@
             <div class="col-12 m-2">
                 <label for="title" class="form-label">제목</label>
                 <input name="title" type="text" class="form-control" id="title" placeholder="제목 입력"
-                value="{{old('title')}}">
+                       value="{{old('title')}}">
             </div>
 
             @error('title')
@@ -29,8 +29,8 @@
             @enderror
             <div class="col-12 m-2">
                 <label for="content" class="form-label">글 내용</label>
-                <textarea  name="content" class="form-control"
-                           id="content" cols="30"
+                <textarea name="content" class="form-control"
+                          id="content" cols="30"
 
                 >{{old('content')}}</textarea>
             </div>

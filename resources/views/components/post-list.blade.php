@@ -12,8 +12,8 @@
         <tbody>
             @foreach($posts as $a)
                 <tr>
-                    <td>{{$a->title}}</td>
-                    <td>{{$a->user->name}}</td>
+                    <td><a href="{{route('posts.show',['post'=> $a->id])}}">{{$a->title}}</a></td>
+                    <td>{{$a->userPost->name}}</td>
                     <td>{{$a->created_at->diffForHumans()}}</td>
                 </tr>
             @endforeach
