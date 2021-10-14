@@ -14,12 +14,12 @@ class PostShow extends Component
      * @return void
      */
 
-    public $ss;
+    public $post;
 
-    public function __construct($ss)
+    public function __construct($post)
     {
 //        dd('construct');
-        $this->ss = $ss;
+        $this->post = $post;
     }
 
     /**

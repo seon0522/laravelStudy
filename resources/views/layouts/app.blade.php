@@ -34,3 +34,25 @@
         </div>
     </body>
 </html>
+
+<script>
+    function confirmDelete(e){
+        myform = document.getElementById('form');
+        //form이 서버로 전달되는 것을 막아준다.
+        flag = confirm('정말 삭제하시겠습니까?');
+
+        if (flag){
+            myform.submit();
+        }
+    }
+
+    function deleteImage(id){
+        editForm = document.getElementById('editForm');
+        // editForm.delete('_method');
+        editForm._method.value = 'delete';
+        editForm.action = '/posts/images/'+id;
+        editForm.submit();
+        return false;
+    }
+
+</script>

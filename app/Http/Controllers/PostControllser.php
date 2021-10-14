@@ -59,10 +59,11 @@ class PostControllser extends Controller
 
     public function show($id){
 //        $id에 해당하는 post를 데이터베이스에서 인출하고 그를 View헬퍼 함수를 이용해서 post-list에 값 넣기
-        $post = Post::findOrFail($id);
+        $post = Post::with('likes')->findOrFail($id);
+//        with('likes') => 즉시 로딩 ...?
 
 //        dd($post->image);
-        return view('bbs.show', ['ss'=>$post]);
+        return view('bbs.show', ['post'=>$post]);
     }
 
 //    Type hinting
@@ -80,16 +81,15 @@ class PostControllser extends Controller
         return redirect()->route('posts.index');
     }
 
-    public function deleteImage($id){
-
+    public function deleteImage($id)
+    {
         $post = Post::find($id);
-
-        Storage::delete('public/images',$post->image);
+        Storage::delete('public/images', $post->image);
 
         $post->image = null;
         $post->save();
 
-        return redirect()->route('posts.edit',['post' => $post->id]);
+        return redirect()->route('posts.edit', ['post' => $post->id]);
     }
 
 
@@ -104,14 +104,20 @@ class PostControllser extends Controller
 
 
     public function update(Request $request, $id){
+
+//        dd("여기는 update");
+
+//dd($request);
+
         $this->validate($request, ["title"=>'required',
-            "content"=>'required | min:3']);
+            "contentss"=>'required | min:3']);
 
         $post = Post::find($id);
-//        $post->title = $request->input['title'];
-//        dd($request);
         $post->title = $request->title;
         $post->content = $request->contentss;
+
+//        dd($post);
+//        dd($request);
 
         if($request->image){
 //            이미지를 이 게시글의 이미지로 파일 시스템에 저장하고, DB반영하기 전에 기존 이미지가 있다면
@@ -122,11 +128,14 @@ class PostControllser extends Controller
             $fileName = time().'_'.$request->file('image')->getClientOriginalName();
             $post->image = $fileName;
             $request->image->storeAs('public/images/'.$fileName);
+//            dd($post);
         }
+
+//        dd($post);
 
         $post->save();
 
-        return redirect()->route('posts.show',['id'=>$post->id]);
+        return redirect()->route('posts.show',['post'=>$post->id]);
 
     }
 

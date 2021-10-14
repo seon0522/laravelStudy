@@ -40,7 +40,7 @@ class Post extends Model
 */
 
 //    포스트.php
-    public function likeUser(){
+    public function likes(){
         return $this->belongsToMany(User::class);
     }
 

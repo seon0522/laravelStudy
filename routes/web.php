@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PostControllser;
 use Illuminate\Support\Facades\Route;
 
@@ -24,7 +25,9 @@ Route::get('/', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::post('/like/{post}',\App\Http\Controllers\LikeController::class, "store")->middleware('auth')->name('like.store');
+Route::post('/like/{post}',
+    [LikeController::class, "store"])
+    ->middleware('auth')->name('like.store');
 
 require __DIR__.'/auth.php';
 

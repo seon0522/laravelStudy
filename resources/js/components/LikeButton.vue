@@ -9,17 +9,40 @@
 
 <script>
 export default {
+    props:['post', 'loginuser'],
     data(){
         return {
-            like:false
+            like:false,
+            userIdArray:[],
         }
     },
     methods:{
         likeClicked(){
-            this.like = !this.like;
-        }
-    }
+            // this.like = !this.like;
+            axios.post('/like/' + this.post.id)
+            .then(response=>{
+                console.log(response.data);
+                this.like = !this.like;
 
+            }).catch(error=>{
+                console.log(error);
+            });
+        },
+        checkLikes(){
+            //thispost.like가 현재 로그인 한 사용자(this.loginuser)를
+        // 포함하고 있으면 like=true, 아니면 like = false
+
+            this.like = this.userIdArray.includes(this.loginuser);
+
+        }
+    },
+
+    created(){
+        this.userIdArray = this.post.likes.map(elem=>{
+            return elem.id;
+        })
+        this.checkLikes();
+    }
 }
 
 
