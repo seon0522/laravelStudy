@@ -15,6 +15,8 @@
 
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
+        <link href="//cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
@@ -36,6 +38,10 @@
 </html>
 
 <script>
+    @if(session('success'))
+        showSuccessMsg()
+    @endif
+
     function confirmDelete(e){
         myform = document.getElementById('form');
         //form이 서버로 전달되는 것을 막아준다.
@@ -44,6 +50,7 @@
         if (flag){
             myform.submit();
         }
+        //e.preventDefault(); // from이 서버로 전달됨
     }
 
     function deleteImage(id){
@@ -55,4 +62,13 @@
         return false;
     }
 
+    function showSuccessMsg(){
+            Swal.fire({
+                position: 'top-center',
+                icon: 'success',
+                title: 'Your work has been saved',
+                showConfirmButton: false,
+                timer: 1500
+            })
+    }
 </script>

@@ -53,12 +53,13 @@ class PostControllser extends Controller
 //        Eloquent model이 white list인 $fillable에 기술해야함
         Post::create($input);
 
-        return redirect()->route('posts.index');
+        return redirect()->route('posts.index')->with('success',1);
     }
 
 
     public function show($id){
 //        $id에 해당하는 post를 데이터베이스에서 인출하고 그를 View헬퍼 함수를 이용해서 post-list에 값 넣기
+//        with 즉시로딩 / 호출 될 때 한번에 연관된 모델들을 가져온다.
         $post = Post::with('likes')->findOrFail($id);
 //        with('likes') => 즉시 로딩 ...?
 

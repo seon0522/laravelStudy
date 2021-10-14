@@ -33,7 +33,6 @@ export default {
         // 포함하고 있으면 like=true, 아니면 like = false
 
             this.like = this.userIdArray.includes(this.loginuser);
-
         }
     },
 
