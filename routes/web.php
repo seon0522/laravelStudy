@@ -18,8 +18,9 @@ use Illuminate\Support\Facades\Route;
 Route::resource('/posts', PostControllser::class)
 ->middleware(['auth']);
 
-Route::delete('/posts/images/{id}', [PostControllser::class, 'deleteImage'])->middleware(['auth']);
+Route::resource('/comments',\App\Http\Controllers\CommentsController::class);
 
+Route::delete('/posts/images/{id}', [PostControllser::class, 'deleteImage'])->middleware(['auth']);
 
 Route::get('/', function () {
     return view('dashboard');

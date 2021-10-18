@@ -29,7 +29,6 @@
                 action="{{route('posts.destroy', ['post'=>$post->id])}}">
                 @csrf
                 @method('delete')
-{{--                <input type="hidden" name="_method" value="delete">--}}
                 <button type="submit">삭제하기</button>
             </form>
         </div>
@@ -37,14 +36,10 @@
 
         <div class="card mt-2 mb-5" style="width: 100%; margin: 10px">
             <comment-list
-            :post="{{$post}}",
-            :loginUserId="{{ auth()->user()->id }}"
+            :post="{{$post}}"
+            :loginuserId="{{ auth()->user()->id }}"
             />
-
         </div>
-
-
-
 {{--
 
 POST
