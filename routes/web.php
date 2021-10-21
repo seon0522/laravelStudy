@@ -26,9 +26,17 @@ Route::get('/', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::post('/like/{post}',
+Route::post('/like/{post_id}',
     [LikeController::class, "store"])
     ->middleware('auth')->name('like.store');
+
+//여기는 정보를 받아서 오는거군아
+Route::get('/comments/{post}', [\App\Http\Controllers\CommentsController::class,'index'])->name('comments.index');
+
+//아 이거는 수정하라는 거구나
+Route::patch('/comments/{comment_id}', [\App\Http\Controllers\CommentsController::class,'update'])->name('comments.update');
+
+Route::post('/comments/{post_id}', [\App\Http\Controllers\CommentsController::class, 'store'])->name('comments.store');
 
 require __DIR__.'/auth.php';
 

@@ -13,6 +13,10 @@ class Comment extends Model
      * User - Comment (1 : N )*
      * */
 
+    protected $fillable = ['comment', 'user_id', 'post_id'];
+//    BLACK LIST;
+//    protected $guarded = [''];
+
     public function user(){
         //comment 입장에서 연결된 User를 찾았을 때
         //belongsTo 관계 메서드를 통해서
