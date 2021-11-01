@@ -32,9 +32,7 @@ class Post extends Model
 
     post.table
 
-
-    중간 테이블.
-
+    중간 테이블.(피벗테이블)
 
      user.table
 */

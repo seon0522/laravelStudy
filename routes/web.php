@@ -36,7 +36,10 @@ Route::get('/comments/{post}', [\App\Http\Controllers\CommentsController::class,
 //아 이거는 수정하라는 거구나
 Route::patch('/comments/{comment_id}', [\App\Http\Controllers\CommentsController::class,'update'])->name('comments.update');
 
-Route::post('/comments/{post_id}', [\App\Http\Controllers\CommentsController::class, 'store'])->name('comments.store');
+Route::post('/comments/{postId}', [\App\Http\Controllers\CommentsController::class, 'store'])->middleware('auth')
+    ->name('comments.store');
+
+Route::delete('/comments/{commentId}', [\App\Http\Controllers\CommentsController::class, 'destroy'])->name('comments.destroy');
 
 require __DIR__.'/auth.php';
 

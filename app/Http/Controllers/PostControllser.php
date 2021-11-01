@@ -129,7 +129,6 @@ class PostControllser extends Controller
             $fileName = time().'_'.$request->file('image')->getClientOriginalName();
             $post->image = $fileName;
             $request->image->storeAs('public/images/'.$fileName);
-//            dd($post);
         }
 
 //        dd($post);
@@ -137,7 +136,6 @@ class PostControllser extends Controller
         $post->save();
 
         return redirect()->route('posts.show',['post'=>$post->id]);
-
     }
 
 }

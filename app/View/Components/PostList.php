@@ -11,6 +11,9 @@ class PostList extends Component
      *
      * @return void
      */
+//    컴포넌트의 데이터 초기화
+//    controller의 값을 컴포넌트에 연결!
+//     컴포넌트 파일에서 자유롭게 변수 사용 가능
 
     public $name = "홍길동";
     public $posts;
@@ -20,11 +23,6 @@ class PostList extends Component
         //posts
         $this->posts = $posts;
     }
-
-//    public function writer(){
-//
-//        $this->name =
-//    }
 
     /**
      * Get the view / contents that represent the component.
